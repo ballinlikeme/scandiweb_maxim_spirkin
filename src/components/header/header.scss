@@ -1,0 +1,95 @@
+.header {
+  // REFACTOR TO EM & REM
+  &__container {
+    font-size: 16px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+  }
+  &__categories {
+    height: 100%;
+  }
+  &__logo {
+    position: absolute;
+    left: 50%;
+    top: calc(28.62 / 80) * 100%;
+  }
+}
+
+.categories {
+  &__list {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__item {
+    position: relative;
+
+    font-size: 16px;
+    font-weight: 400;
+    color: #1d1f22;
+    text-transform: uppercase;
+
+    padding: 0px 16px;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: color 0.3s ease;
+    &::after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 2px;
+      background-color: #5ece7b;
+      left: 0;
+      bottom: 0;
+      transition: width 0.3s ease;
+    }
+    &._active {
+      color: #5ece7b;
+      font-weight: 600;
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.actions {
+  &__list {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+  }
+  &__item {
+    cursor: pointer;
+    &.currency {
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: calc(6 / 18) * 100%;
+        right: -150%;
+        border-bottom: 1px solid #000;
+        border-left: 1px solid #000;
+        transform: rotate(-45deg);
+        width: 6px;
+        height: 6px;
+        transition: transform 0.3s ease;
+      }
+
+      &._active {
+        &::after {
+          transform: rotate(135deg);
+        }
+      }
+    }
+  }
+}

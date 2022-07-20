@@ -1,0 +1,7 @@
+@function em($requiredValue, $emValue) {
+  @return $requiredValue / $emValue * 1em;
+}
+
+@function rem($requiredValue, $remValue) {
+  @return $requiredValue / $remValue * 1rem;
+}

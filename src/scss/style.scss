@@ -1,0 +1,41 @@
+//====<ПОДКЛЮЧЕНИЕ ШРИФТОВ>====================================================================================================
+@import url("https://fonts.googleapis.com/css?family=Raleway:200,regular,500,600,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto:regular,500,700");
+@import url("https://fonts.googleapis.com/css?family=Roboto+Condensed:700");
+@import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular");
+//====<ИКОНОЧНЫЙ ШРИФТ>====================================================================================================
+// @import "icons";
+//====<ПЕРЕМЕННЫЕ>====================================================================================================
+$fontFamily: "Raleway";
+$fontSize: 12px;
+$color: #1d1f22;
+
+$maxWidthContainer: 1210;
+$md1: $maxWidthContainer + px;
+$md2: 991.98px;
+$md3: 767.98px;
+$md4: 479.98px;
+//====<ОБНУЛЕНИЕ>====================================================================================================
+@import "null";
+//====<ОСНОВНАЯ СЕТКА>====================================================================================================
+._container {
+  max-width: $maxWidthContainer + px;
+  padding: 0 15px;
+  box-sizing: content-box;
+  margin: 0 auto;
+  @media (max-width: $md1) {
+    max-width: 970px;
+  }
+  @media (max-width: $md2) {
+    max-width: 750px;
+  }
+  @media (max-width: $md3) {
+    max-width: none;
+    padding: 0 10px;
+  }
+}
+//====<ОБОЛОЧКА СТРАНИЦЫ>====================================================================================================
+.wrapper {
+  min-height: 100%;
+  overflow: hidden;
+}
