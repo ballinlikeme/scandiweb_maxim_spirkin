@@ -1,7 +1,7 @@
 @function em($requiredValue, $emValue) {
-  @return $requiredValue / $emValue * 1em;
+  @return calc($requiredValue / $emValue * 1em);
 }
 
 @function rem($requiredValue, $remValue) {
-  @return $requiredValue / $remValue * 1rem;
+  @return calc($requiredValue / $remValue * 1rem);
 }

@@ -1,4 +1,4 @@
-@import "../../../scss/functions.scss";
+@import "../../scss/functions";
 
 .product {
   padding: 80px 0;
@@ -62,8 +62,7 @@
 
   &__big {
     img {
-      width: 610px;
-      max-height: 510px;
+      max-width: 610px;
     }
   }
 }

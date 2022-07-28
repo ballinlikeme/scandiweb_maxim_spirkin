@@ -1,0 +1,109 @@
+.category-screen {
+  position: relative;
+  z-index: 1;
+
+  &__container {
+    font-size: 16px;
+    padding: calc(80 / 16) * 1em 0;
+  }
+  &__title {
+    font-size: 42px;
+  }
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(103 / 16) * 1em;
+    gap: 32px;
+    a {
+      display: block;
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+
+    position: relative;
+
+    transition: box-shadow 0.3s ease 0s;
+    &:hover {
+      .item-category-screen__cart-link {
+        display: block;
+      }
+      box-shadow: 0px 4px 35px rgba(168, 172, 176, 0.25);
+    }
+
+
+    &._active {
+      ::before {
+        content: "OUT OF STOCK";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-weight: 400;
+        color: #8d8f9a;
+        position: absolute;
+        top: 0;
+        left: 0;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: 50;
+        background: #ffffff;
+        opacity: 0.5;
+      }
+    }
+  }
+}
+
+.item-category-screen {
+
+  &__cart-link {
+    display: none;
+    cursor: pointer;
+    position: absolute;
+    right: calc(31 / 16) * 1em;
+    bottom: calc(62 / 16) * 1em;
+    padding: calc(14 / 16) * 1em;
+    width: calc(52 / 16) * 1em;
+    height: calc(52 / 16) * 1em;
+    background-color: #5ece7b;
+    background-image: url("../../assets/wcart.svg");
+    background-position: center;
+    background-size: calc(24 / 16) * 1em;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+
+    &::before {
+      display: none !important;
+    }
+  }
+
+  &__image {
+    margin-bottom: calc(24 / 16) * 1em;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1 1 auto;
+
+    img {
+      max-width: 350px;
+      max-height: 350px;
+    }
+
+      width: calc(350 / 16 * 1em);
+      height: calc(330 / 16 * 1em);
+  }
+  &__title {
+    font-size: calc(18 / 16) * 1em;
+    font-weight: 300;
+    line-height: 160%;
+    color: #1d1f22;
+  }
+  &__price {
+    font-size: calc(18 / 16) * 1em;
+    font-weight: 500;
+    color: #1d1f22;
+  }
+}

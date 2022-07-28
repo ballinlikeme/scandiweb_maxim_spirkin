@@ -1,12 +1,27 @@
 import React, { Component } from "react";
-import "../../../scss/common.scss";
-import "./overlay.scss";
-import product from "../../../assets/products/product.jpg";
 
-export class Overlay extends Component {
-  render(): React.ReactNode {
+import "../../scss/common.scss";
+import "./cart.scss";
+
+import cn from "classnames";
+
+import product from "../../assets/products/product.jpg";
+
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+
+class Overlay extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
     return (
-      <div className="overlay">
+      <div
+        className={cn("overlay", {
+          _active: this.props.overlay.isOpened,
+        })}
+      >
         <div className="overlay__container">
           <h2 className="overlay__title">
             <span>My Bag</span>, 3 items
@@ -102,9 +117,14 @@ export class Overlay extends Component {
             <div className="overlay__price">$200.00</div>
           </div>
           <div className="overlay__controls">
-            <button className="common__btn overlay__btn__white">
-              view bag
-            </button>
+            <Link to="/cart">
+              <button
+                onClick={this.removeCurrentCategory}
+                className="common__btn overlay__btn__white"
+              >
+                view bag
+              </button>
+            </Link>
             <button className="common__btn overlay__btn">check out</button>
           </div>
         </div>
@@ -112,3 +132,13 @@ export class Overlay extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  const { overlay, category } = state;
+  return {
+    overlay,
+    category,
+  };
+};
+
+export default connect(mapStateToProps)(Overlay);

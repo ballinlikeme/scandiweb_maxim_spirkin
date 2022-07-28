@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import "./cart.scss";
-import "../../../scss/common.scss";
+import "../../scss/common.scss";
 
 export class Cart extends Component {
-  render(): React.ReactNode {
+  render() {
     return (
-      <div className="cart">
+      <div className="cart ">
         <div className="cart__container _container">
           <h2 className="cart__title">cart</h2>
           <ul className="cart__list">
