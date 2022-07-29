@@ -88,7 +88,29 @@ class Product extends Component {
   };
 
   onSubmit = () => {
-    console.log(this.state.currentAttributes);
+    if (this.state.currentAttributes.length < this.state.attributes.length) {
+      alert("выберите все аттрибуты");
+      return;
+    } else {
+      alert("vse good");
+    }
+
+    const payload = {
+      brand: this.state.brand,
+      name: this.state.name,
+      prices: this.state.prices,
+      attributes: this.state.attributes,
+      selectedAttributes: this.state.currentAttributes,
+      amount: 1,
+    };
+
+    console.log("this.state.currentAttributes", this.state.currentAttributes);
+
+    const { dispatch } = this.props;
+    dispatch({ type: "ADD_PRODUCT", payload: payload });
+    this.setState({
+      currentAttributes: [],
+    });
   };
 
   render() {
