@@ -5,12 +5,11 @@ import Layout from "./components/layout/Layout";
 
 import Category from "./screens/category/Category";
 import Product from "./screens/product/Product";
-import { Cart } from "./screens/cart/Cart";
+import Cart from "./screens/cart/Cart";
 
 import { Routes, Route } from "react-router-dom";
 
 function App() {
-
   return (
     <>
       <Routes>

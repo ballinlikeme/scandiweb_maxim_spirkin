@@ -4,6 +4,8 @@ import cn from "classnames";
 
 import { connect } from "react-redux";
 
+import getPrice from "../../../js/getPrice";
+
 import { Link } from "react-router-dom";
 
 class ProductTile extends Component {
@@ -14,17 +16,6 @@ class ProductTile extends Component {
       productInfo: this.props.product,
     };
   }
-
-  getPrice = () => {
-    const currencies = this.state.productInfo.prices;
-    const currentCurrency = this.props.currentCurrency;
-
-    const currentPrice = currencies.filter((item) => {
-      return item.currency.label === currentCurrency;
-    });
-
-    return currentPrice[0].amount;
-  };
 
   render() {
     return (
@@ -42,7 +33,10 @@ class ProductTile extends Component {
           </h3>
           <div className="item-category-screen__price">
             {this.props.currentCurrencySymbol}
-            {this.getPrice()}
+            {getPrice(
+              this.state.productInfo.prices,
+              this.props.currentCurrency
+            )}
           </div>
           <div className="item-category-screen__cart-link"></div>
         </li>

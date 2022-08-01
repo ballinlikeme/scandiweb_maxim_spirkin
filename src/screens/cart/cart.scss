@@ -204,8 +204,7 @@
     font-weight: 500;
     color: #1d1f22;
   }
-  &__slider {
-  }
+  
 }
 
 .slider {
@@ -213,11 +212,17 @@
     height: 100%;
   }
   &__item {
-    width: 200px;
-    height: 100%;
 
-    background-image: url("../../assets/products/product.jpg");
-    background-size: cover;
+    img {
+      max-width: 200px;
+      
+    }
+    
+
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     position: relative;
   }

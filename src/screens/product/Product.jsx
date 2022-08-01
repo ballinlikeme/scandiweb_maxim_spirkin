@@ -7,6 +7,9 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
 import { getProductDetails } from "../../query/product";
+import { sortByField } from "../../js/sortByField";
+
+import getPrice from "../../js/getPrice";
 
 import "./product.scss";
 import "../../scss/common.scss";
@@ -73,26 +76,10 @@ class Product extends Component {
     });
   }
 
-  getPrice = () => {
-    const currencies = this.state.prices;
-    if (currencies.length > 0) {
-      const currentCurrency = this.props.currency.currentCurrency;
-
-      const currentPrice = currencies.filter((item) => {
-        return item.currency.label === currentCurrency;
-      });
-
-      return currentPrice[0].amount;
-    }
-    return "";
-  };
-
   onSubmit = () => {
     if (this.state.currentAttributes.length < this.state.attributes.length) {
       alert("выберите все аттрибуты");
       return;
-    } else {
-      alert("vse good");
     }
 
     const payload = {
@@ -100,11 +87,13 @@ class Product extends Component {
       name: this.state.name,
       prices: this.state.prices,
       attributes: this.state.attributes,
-      selectedAttributes: this.state.currentAttributes,
+      selectedAttributes: this.state.currentAttributes.sort(
+        sortByField("name")
+      ),
+      attributes: this.state.attributes,
+      gallery: this.state.gallery,
       amount: 1,
     };
-
-    console.log("this.state.currentAttributes", this.state.currentAttributes);
 
     const { dispatch } = this.props;
     dispatch({ type: "ADD_PRODUCT", payload: payload });
@@ -158,7 +147,10 @@ class Product extends Component {
                 <div className="price__label common__label">price:</div>
                 <div className="common__price">
                   {this.props.currency.currentCurrencySymbol}
-                  {this.getPrice()}
+                  {getPrice(
+                    this.state.prices,
+                    this.props.currency.currentCurrency
+                  )}
                 </div>
               </div>
               <div className="product__button">
@@ -197,7 +189,10 @@ class Product extends Component {
               <div className="price__label common__label">price:</div>
               <div className="common__price">
                 {this.props.currency.currentCurrencySymbol}
-                {this.getPrice()}
+                {getPrice(
+                  this.state.prices,
+                  this.props.currency.currentCurrency
+                )}
               </div>
             </div>
             <div className="product__button">
