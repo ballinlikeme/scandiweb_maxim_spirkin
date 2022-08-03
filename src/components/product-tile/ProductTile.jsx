@@ -4,7 +4,7 @@ import cn from "classnames";
 
 import { connect } from "react-redux";
 
-import getPrice from "../../../js/getPrice";
+import getPrice from "../../js/getPrice";
 
 import { Link } from "react-router-dom";
 

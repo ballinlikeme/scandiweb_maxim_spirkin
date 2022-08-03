@@ -33,8 +33,7 @@
   }
   &__list {
     display: flex;
-    flex-direction: column;
-    gap: 40px;
+    flex-direction: column; 
 
     margin-top: 2em;
   }
@@ -43,7 +42,9 @@
     gap: 8px;
 
     width: 100%;
-
+    &:not(:last-child) {
+      margin-bottom: 40px;
+    }
     height: 100%;
   }
 
@@ -161,7 +162,7 @@
       height: 1px;
       background: #1d1f22;
       top: 50%;
-      left: 30%;
+      left: 33.333%;
     }
     &__plus {
       &::after {
@@ -170,7 +171,7 @@
         display: block;
         width: 0.5em;
         height: 1px;
-        left: 30%;
+        left: 33.333%;
         top: 50%;
         transform: rotate(90deg);
         background: #1d1f22;

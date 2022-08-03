@@ -6,7 +6,7 @@ import { getCurrencies } from "../../query/currency";
 
 import cartSign from "../../assets/cart.svg";
 import CurrencyButton from "../buttons/currency-button/CurrencyButton";
-import Cart from "../cart/Cart";
+import Cart from "../cart-overlay/CartOverlay";
 
 class Actions extends Component {
   constructor(props) {
@@ -26,16 +26,6 @@ class Actions extends Component {
       type: "CHANGE_VISIBILITY",
       payload: !this.props.overlay.isOpened,
     });
-  };
-
-  closeCartOverlay = (event) => {
-    const firstElement = event.path[0];
-    const secondElement = event.path[1];
-
-    if (firstElement.tagName !== "IMG" && secondElement.tagName !== "LI") {
-      const { dispatch } = this.props;
-      dispatch({ type: "CHANGE_VISIBILITY", payload: false });
-    }
   };
 
   toggleCurrencyMenu = () => {
@@ -58,7 +48,6 @@ class Actions extends Component {
       currencies: currencies,
     });
 
-    document.body.addEventListener("click", this.closeCartOverlay);
     document.body.addEventListener("click", this.closeCurrencyMenu);
   }
 

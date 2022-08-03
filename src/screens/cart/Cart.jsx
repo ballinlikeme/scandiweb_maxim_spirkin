@@ -8,17 +8,37 @@ import "./cart.scss";
 import "../../scss/common.scss";
 
 class Cart extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      products: this.props.products,
-    };
+  calculateCleanPrice() {
+    let cleanPrice = 0;
+    this.props.cart.products.forEach((product) => {
+      const currentProductPrice = product.prices.find((price) => {
+        return price.currency.label === this.props.currency.currentCurrency;
+      });
+      const currentProductPriceAmount =
+        currentProductPrice.amount * product.amount;
+      cleanPrice += currentProductPriceAmount;
+    });
+    return cleanPrice || 0;
   }
 
-  componentDidMount = () => {
-    console.log(this.props, "props");
-  };
+  calculateTax() {
+    return Number((this.calculateCleanPrice() * 0.21).toFixed(2)) || 0;
+  }
+
+  calculateTotalPrice() {
+    return (this.calculateCleanPrice() + this.calculateTax()).toFixed(2) || 0;
+  }
+
+  calculateTotalAmount() {
+    let amount = 0;
+
+    this.props.cart.products.forEach((product) => {
+      amount += product.amount;
+      console.log(amount);
+    });
+
+    return amount;
+  }
 
   render() {
     return (
@@ -26,7 +46,7 @@ class Cart extends Component {
         <div className="cart__container _container">
           <h2 className="cart__title">cart</h2>
           <ul className="cart__list">
-            {this.state.products.map((product) => {
+            {this.props.cart.products.map((product) => {
               return <CartItem product={product} />;
             })}
           </ul>
@@ -38,9 +58,17 @@ class Cart extends Component {
                 <div className="cart__elem">Total:</div>
               </div>
               <div className="cart__result">
-                <div className="cart__elem_black">$42.00</div>
-                <div className="cart__elem_black">3</div>
-                <div className="cart__elem_black">$200.00</div>
+                <div className="cart__elem_black">
+                  {this.props.currency.currentCurrencySymbol}
+                  {this.calculateTax()}
+                </div>
+                <div className="cart__elem_black">
+                  {this.calculateTotalAmount()}
+                </div>
+                <div className="cart__elem_black">
+                  {this.props.currency.currentCurrencySymbol}
+                  {this.calculateTotalPrice()}
+                </div>
               </div>
             </div>
             <button className="common__btn">order</button>
@@ -52,7 +80,11 @@ class Cart extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.cart;
+  const { cart, currency } = state;
+  return {
+    cart,
+    currency,
+  };
 };
 
 export default connect(mapStateToProps)(Cart);

@@ -13,12 +13,48 @@ class CartItem extends Component {
 
     this.state = {
       product: this.props.product,
+      amount: this.props.product.amount,
     };
   }
 
-  componentDidMount() {
-    console.log(this.props);
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevProps !== this.props) {
+      return true;
+    }
   }
+
+  increaseAmount = () => {
+    const {dispatch} = this.props;
+    const payload = {
+      name: this.state.product.name,
+      selectedAttributes: this.state.product.selectedAttributes,
+    }
+    dispatch({type: "INCREASE_AMOUNT", payload: payload})
+
+    this.setState({
+      amount: this.state.amount + 1,
+    })
+  }
+
+  decreaseAmount = () => {
+    const {dispatch} = this.props;
+    const payload = {
+      name: this.state.product.name,
+      selectedAttributes: this.state.product.selectedAttributes,
+    }
+    dispatch({type: "DECREASE_AMOUNT", payload: payload})
+
+    this.setState({
+      amount: this.state.amount - 1,
+    })
+
+  }
+
+  normalizePrice = () => {
+    const price = getPrice(this.state.product.prices, this.props.currency.currentCurrency) * this.state.product.amount;
+    return Math.floor(price * 100) / 100;
+  }
+
 
   render() {
     return (
@@ -32,8 +68,8 @@ class CartItem extends Component {
               </div>
             </div>
             <div className="common__price">
-              {this.props.currentCurrencySymbol}
-              {getPrice(this.state.product.prices, this.props.currentCurrency)}
+              {this.props.currency.currentCurrencySymbol}
+              {this.normalizePrice()}
             </div>
             {this.state.product.attributes.map((attribute) => {
               if (attribute.name === "Color") {
@@ -56,12 +92,13 @@ class CartItem extends Component {
             })}
           </div>
           <div className="item-cart__controls">
-            <div className="item-cart__button item-cart__button_plus">
-              <button></button>
+            <div className="item-cart__button item-cart__button_plus"
+            >
+              <button onClick={this.increaseAmount}></button>
             </div>
-            <div className="item-cart__amount">1</div>
+            <div className="item-cart__amount">{this.state.amount}</div>
             <div className="item-cart__button">
-              <button></button>
+              <button onClick={this.decreaseAmount}></button>
             </div>
           </div>
         </div>
@@ -86,7 +123,10 @@ class CartItem extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.currency;
+  const {cart, currency} = state;
+  return {
+    cart, currency
+  };
 };
 
 export default connect(mapStateToProps)(CartItem);

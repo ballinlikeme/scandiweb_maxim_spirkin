@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import ProductTile from "./product-tile/ProductTile";
+import ProductTile from "../../components/product-tile/ProductTile";
 
 import { getProductsInCategory } from "../../query/products";
 
