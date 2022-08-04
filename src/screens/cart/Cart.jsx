@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import CartItem from "../../components/cart-item/CartItem";
 
@@ -7,7 +7,10 @@ import { connect } from "react-redux";
 import "./cart.scss";
 import "../../scss/common.scss";
 
-class Cart extends Component {
+class Cart extends React.Component {
+  constructor(props) {
+    super(props);
+  }
   calculateCleanPrice() {
     let cleanPrice = 0;
     this.props.cart.products.forEach((product) => {
@@ -86,5 +89,7 @@ const mapStateToProps = (state) => {
     currency,
   };
 };
+
+console.log(Cart);
 
 export default connect(mapStateToProps)(Cart);

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import Cart from "../../screens/cart/Cart"; // why extends Cart doesn't work?
 
@@ -15,7 +15,7 @@ import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
-class CartOverlay extends Component {
+class CartOverlay extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,14 +28,19 @@ class CartOverlay extends Component {
     };
   }
 
-  isScrollbarRequired() {
+  isScrollbarRequired = () => {
     if (this.wrapperRef.current) {
       return this.wrapperRef.current.offsetHeight >= this.state.maxHeight &&
         this.props.overlay.isOpened
         ? true
         : false;
     }
-  }
+  };
+
+  closeOverlayByLink = () => {
+    const { dispatch } = this.props;
+    dispatch({ type: "CHANGE_VISIBILITY", payload: false });
+  };
 
   closeCartOverlay = (event) => {
     const overlayElement = this.overlayRef.current;
@@ -67,7 +72,7 @@ class CartOverlay extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.overlay.isOpened !== prevProps.overlay.isOpened) {
       this.setState({
-        maxHeight: this.itemRef.current.offsetHeight * 2,
+        maxHeight: this.itemRef.current.offsetHeight * 2 + 80,
       });
 
       toggleScrollbar(this.wrapperRef, this.isScrollbarRequired());
@@ -225,7 +230,7 @@ class CartOverlay extends Component {
             <div className="overlay__price">$200.00</div>
           </div>
           <div className="overlay__controls">
-            <Link to="/cart">
+            <Link onClick={this.closeOverlayByLink} to="/cart">
               <button className="common__btn overlay__btn__white">
                 view bag
               </button>
