@@ -25,7 +25,9 @@ class ColorAttribute extends Attributes {
                 key={item.value}
                 onClick={() => this.handleValueChange(item.displayValue)}
                 className={cn("common__color", {
-                  _active: item.displayValue === this.state.selectedValue,
+                  _active:
+                    item.displayValue === this.state.selectedValue &&
+                    this.isEqual(item.displayValue),
                 })}
               >
                 <div

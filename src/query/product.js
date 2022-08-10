@@ -1,12 +1,13 @@
-import {gql} from "@apollo/client";
-import {client} from "../index";
+import { gql } from "@apollo/client";
+import { client } from "../index";
 
 export const getProductDetails = async (id) => {
-  return await client.query({
-    query: gql`
+  return await client
+    .query({
+      query: gql`
       query {
   product(id: "${id}") {
-    name, brand, gallery, description, prices {
+    name, brand, gallery, inStock, description, prices {
       currency {
         label, symbol
       }, amount
@@ -17,8 +18,9 @@ export const getProductDetails = async (id) => {
     }
   }
 }
-    `
-  }).then(response => {
-    return response;
-  })
-}
+    `,
+    })
+    .then((response) => {
+      return response;
+    });
+};

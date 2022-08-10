@@ -13,26 +13,21 @@ export class StaticAttribute extends Component {
   }
 
   isEqual(value) {
-    const currentAttribute = this.state.selectedAttributes.find((elem) => {
+    const currentAttribute = this.props.selectedAttributes.find((elem) => {
       return elem.name === this.state.attribute.name;
     });
 
-    console.log(currentAttribute, "ca");
     return value === currentAttribute.value ? true : false;
-  }
-
-  componentDidMount() {
-    console.log(this.state);
   }
 
   render() {
     return (
       <div className="product__item">
         <div className="product__label common__label">
-          {this.state.attribute.name}:
+          {this.props.attribute.name}:
         </div>
         <div className="common__selection">
-          {this.state.attribute.items.map((item) => {
+          {this.props.attribute.items.map((item) => {
             return (
               <div
                 key={item.value}

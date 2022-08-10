@@ -1,17 +1,11 @@
-
-const ADD_PRODUCT = "ADD_PRODUCT"
-const REMOVE_PRODUCT = "REMOVE_PRODUCT"
-const INCREASE_AMOUNT = "INCREASE_AMOUNT"
-const DECREASE_AMOUNT = "DECREASE_AMOUNT"
+const ADD_PRODUCT = "ADD_PRODUCT";
+const REMOVE_PRODUCT = "REMOVE_PRODUCT";
+const INCREASE_AMOUNT = "INCREASE_AMOUNT";
+const DECREASE_AMOUNT = "DECREASE_AMOUNT";
 
 const initialState = {
   products: [],
 };
-
-// payload: {
-//  name,
-//  selectedAttributes,
-// }
 
 export const cartReducer = (state = initialState, { type, payload }) => {
   switch (type) {
@@ -20,7 +14,6 @@ export const cartReducer = (state = initialState, { type, payload }) => {
 
       const duplicatedProductIndex = currentProducts.findIndex((product) => {
         return (
-
           product.name === payload.name &&
           JSON.stringify(product.selectedAttributes) ===
             JSON.stringify(payload.selectedAttributes)
@@ -43,40 +36,33 @@ export const cartReducer = (state = initialState, { type, payload }) => {
       };
 
     case INCREASE_AMOUNT:
-
       const products = state.products;
-      const productIndex = products.findIndex(product => {
-        return product.name ===
-           payload.name &&
-           JSON.stringify(product.selectedAttributes)
-           === JSON.stringify(payload.selectedAttributes)
-      })
+      const productIndex = products.findIndex((product) => {
+        return (
+          product.name === payload.name &&
+          JSON.stringify(product.selectedAttributes) ===
+            JSON.stringify(payload.selectedAttributes)
+        );
+      });
 
       products[productIndex].amount++;
-      return {...state, products: products};
+      return { ...state, products: products };
 
     case DECREASE_AMOUNT:
-
-
+      const index = state.products.findIndex((product) => {
+        return (
+          product.name === payload.name &&
+          product.selectedAttributes === payload.selectedAttributes
+        );
+      });
       const allProducts = state.products;
-      const selectedProductIndex = allProducts.findIndex(product => {
-        return product.name ===
-           payload.name &&
-           JSON.stringify(product.selectedAttributes)
-           === JSON.stringify(payload.selectedAttributes)
-      })
-
-      allProducts[selectedProductIndex].amount--;
-
-      const amount = allProducts[selectedProductIndex].amount;
-
-      if (amount === 0) {
-        return {...state, products: state.products.filter(product => {
-          return product.amount !== 0
-          })}
-      }
-
-      return {...state, products: allProducts}
+      allProducts[index].amount--;
+      console.log(index, allProducts);
+      const productsLeft = allProducts.filter((product) => {
+        return product.amount > 0;
+      });
+      console.log(productsLeft);
+      return { ...state, products: productsLeft };
 
     default:
       return state;

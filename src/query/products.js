@@ -13,6 +13,7 @@ export const getProductsInCategory = async (category) => {
               id,
               name,
               inStock,
+              brand,
               id,
               gallery,
               prices {

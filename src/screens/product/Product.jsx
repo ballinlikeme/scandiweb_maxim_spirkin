@@ -21,6 +21,9 @@ function withParams(Component) {
 class Product extends Component {
   constructor(props) {
     super(props);
+
+    this.descriptionRef = React.createRef();
+
     this.state = {
       brand: "",
       name: "",
@@ -29,6 +32,7 @@ class Product extends Component {
       attributes: [],
       description: "",
       currentAttributes: [],
+      inStock: false,
     };
   }
 
@@ -73,12 +77,24 @@ class Product extends Component {
       prices: result.data.product.prices,
       attributes: result.data.product.attributes,
       description: result.data.product.description,
+      inStock: result.data.product.inStock,
     });
   }
 
+  componentDidUpdate(prevState) {
+    if (prevState.description !== this.state.description) {
+      this.descriptionRef.current.innerHTML = this.state.description;
+    }
+  }
+
   onSubmit = () => {
+    if (!this.state.inStock) {
+      alert("The product is out of stock");
+      return;
+    }
+
     if (this.state.currentAttributes.length < this.state.attributes.length) {
-      alert("выберите все аттрибуты");
+      alert("Select all attributes");
       return;
     }
 
@@ -130,6 +146,7 @@ class Product extends Component {
                         key={attribute.name}
                         onSelectAttributes={this.onSelectAttributes}
                         attribute={attribute}
+                        currentAttributes={this.state.currentAttributes}
                       />
                     );
                   } else {
@@ -138,6 +155,7 @@ class Product extends Component {
                         key={attribute.name}
                         onSelectAttributes={this.onSelectAttributes}
                         attribute={attribute}
+                        currentAttributes={this.state.currentAttributes}
                       />
                     );
                   }
@@ -161,7 +179,7 @@ class Product extends Component {
                   add to cart
                 </button>
               </div>
-              <div className="product__text">{this.state.description}</div>
+              <div ref={this.descriptionRef} className="product__text"></div>
             </div>
           </div>
         </div>
@@ -203,7 +221,7 @@ class Product extends Component {
                 add to cart
               </button>
             </div>
-            <div className="product__text">{this.state.description}</div>
+            <div ref={this.descriptionRef} className="product__text"></div>
           </div>
         </div>
       </div>

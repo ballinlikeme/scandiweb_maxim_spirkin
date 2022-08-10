@@ -110,6 +110,11 @@
     font-size: 18px;
     font-weight: 500;
 
+    img {
+      position: relative;
+      z-index: 10;
+    }
+
     cursor: pointer;
 
     padding: 0 em(10, 18);
@@ -180,3 +185,26 @@
   }
 }
 
+.cart-counter {
+  position: absolute;
+  top: -10px;
+  right: 0px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Roboto";
+  font-size: 14px;
+  color: #fff;
+
+  z-index: 1;
+
+  width: 20px;
+  height: 20px;
+
+  border-radius: 50%;
+
+  background-color: #000;
+  
+}

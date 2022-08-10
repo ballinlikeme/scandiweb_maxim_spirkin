@@ -2,15 +2,20 @@ import React from "react";
 
 import CartItem from "../../components/cart-item/CartItem";
 
-import { connect } from "react-redux";
+import { connect as reduxConnect } from "react-redux";
 
 import "./cart.scss";
 import "../../scss/common.scss";
 
-class Cart extends React.Component {
+export class Cart extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      products: this.props.cart.products,
+    };
   }
+
   calculateCleanPrice() {
     let cleanPrice = 0;
     this.props.cart.products.forEach((product) => {
@@ -37,15 +42,18 @@ class Cart extends React.Component {
 
     this.props.cart.products.forEach((product) => {
       amount += product.amount;
-      console.log(amount);
     });
 
     return amount;
   }
 
+  componentDidMount() {
+    console.log("cart props", this.props);
+  }
+
   render() {
     return (
-      <div className="cart ">
+      <div className="cart">
         <div className="cart__container _container">
           <h2 className="cart__title">cart</h2>
           <ul className="cart__list">
@@ -83,13 +91,16 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  const { cart, currency } = state;
+  const { cart, currency, overlay } = state;
   return {
     cart,
     currency,
+    overlay,
   };
 };
 
-console.log(Cart);
+export function connect(Component) {
+  return reduxConnect(mapStateToProps)(Component);
+}
 
-export default connect(mapStateToProps)(Cart);
+export default connect(Cart);

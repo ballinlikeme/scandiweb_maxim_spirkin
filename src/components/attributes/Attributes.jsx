@@ -12,6 +12,30 @@ class Attributes extends Component {
     };
   }
 
+  componentDidMount() {
+    console.log(this.props.currentAttributes, this.props);
+  }
+
+  isEqual = (value) => {
+    // console.log(this.props.currentAttributes, "ie log ca");
+    // const attrbiutes = this.props.currentAttributes.map((attribute) => {
+    //   return attribute.value === value;
+    // });
+
+    // if (attrbiutes.length > 0) {
+    //   console.log(attrbiutes.length, "al");
+    //   return true;
+    // }
+
+    // return false;
+
+    const currentAttributes = this.props.currentAttributes.find((elem) => {
+      return elem.value === value;
+    });
+
+    return currentAttributes ? true : false;
+  };
+
   handleValueChange = (value) => {
     this.setState({
       selectedValue: value,
@@ -32,7 +56,9 @@ class Attributes extends Component {
                 key={item.value}
                 onClick={() => this.handleValueChange(item.value)}
                 className={cn("common__size", {
-                  _active: item.value === this.state.selectedValue,
+                  _active:
+                    item.value === this.state.selectedValue &&
+                    this.isEqual(item.value),
                 })}
               >
                 {item.value}
