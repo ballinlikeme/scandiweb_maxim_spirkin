@@ -1,6 +1,18 @@
 .category-screen {
   position: relative;
   z-index: 1;
+  &._active {
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 200;
+      top: 0;
+      left: 0;
+      background-color: rgba(168, 172, 176, 0.25);
+    }
+  }
 
   &__container {
     font-size: 16px;

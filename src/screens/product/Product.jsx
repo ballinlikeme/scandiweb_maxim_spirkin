@@ -10,6 +10,7 @@ import { getProductDetails } from "../../query/product";
 import { sortByField } from "../../js/sortByField";
 
 import getPrice from "../../js/getPrice";
+import cn from "classnames";
 
 import "./product.scss";
 import "../../scss/common.scss";
@@ -121,7 +122,11 @@ class Product extends Component {
   render() {
     if (this.state.attributes.length > 0) {
       return (
-        <div className="product">
+        <div
+          className={cn("product", {
+            _active: this.props.overlay.isOpened,
+          })}
+        >
           <div className="product__container _container">
             <div className="product__images images">
               <div className="images__small">
@@ -186,7 +191,11 @@ class Product extends Component {
       );
     }
     return (
-      <div className="product">
+      <div
+        className={cn("product", {
+          _active: this.props.overlay.isOpened,
+        })}
+      >
         <div className="product__container _container">
           <div className="product__images images">
             <div className="images__small">
@@ -230,10 +239,11 @@ class Product extends Component {
 }
 
 const mapStateToProps = (state) => {
-  const { cart, currency } = state;
+  const { cart, currency, overlay } = state;
   return {
     cart,
     currency,
+    overlay,
   };
 };
 

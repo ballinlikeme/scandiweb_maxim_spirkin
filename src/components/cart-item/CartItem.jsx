@@ -4,7 +4,7 @@ import { StaticAttribute } from "../static-attributes/StaticAttribute";
 import { StaticColorAttribute } from "../static-attributes/StaticColorAttribute";
 import getPrice from "../../js/getPrice";
 
-export class CartItem extends React.Component {
+export class CartItem extends React.PureComponent {
   constructor(props) {
     super(props);
   }

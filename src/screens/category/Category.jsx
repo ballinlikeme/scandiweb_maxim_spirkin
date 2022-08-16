@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import ProductTile from "../../components/product-tile/ProductTile";
 
 import { getProductsInCategory } from "../../query/products";
+import cn from "classnames";
 
 import "./category.scss";
 
@@ -16,7 +17,9 @@ class Category extends Component {
   }
 
   getProducts = async () => {
-    const result = await getProductsInCategory(this.props.currentCategory);
+    const result = await getProductsInCategory(
+      this.props.category.currentCategory
+    );
     this.setState({
       products: result,
     });
@@ -34,10 +37,14 @@ class Category extends Component {
 
   render() {
     return (
-      <div className="category-screen">
+      <div
+        className={cn("category-screen", {
+          _active: this.props.overlay.isOpened,
+        })}
+      >
         <div className="category-screen__container _container">
           <h2 className="category-screen__title">
-            {this.props.currentCategory.toUpperCase()}
+            {this.props.category.currentCategory.toUpperCase()}
           </h2>
           <ul className="category-screen__list">
             {this.state.products.map((product) => {
@@ -51,7 +58,11 @@ class Category extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return state.category;
+  const { category, overlay } = state;
+  return {
+    category,
+    overlay,
+  };
 };
 
 export default connect(mapStateToProps)(Category);

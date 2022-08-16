@@ -7,10 +7,10 @@ import { Outlet } from "react-router-dom";
 export default class Layout extends Component {
   render() {
     return (
-      <div className="wrapper">
+      <>
         <Header />
         <Outlet />
-      </div>
+      </>
     );
   }
 }
