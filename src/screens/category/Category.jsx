@@ -47,8 +47,8 @@ class Category extends Component {
             {this.props.category.currentCategory.toUpperCase()}
           </h2>
           <ul className="category-screen__list">
-            {this.state.products.map((product) => {
-              return <ProductTile key={product.name} product={product} />;
+            {this.state.products.map((product, index) => {
+              return <ProductTile key={index} product={product} />;
             })}
           </ul>
         </div>

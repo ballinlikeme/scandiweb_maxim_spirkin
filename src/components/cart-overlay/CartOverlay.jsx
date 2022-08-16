@@ -87,8 +87,8 @@ class CartOverlay extends Cart {
                   maxHeight: this.maxHeightSetter(),
                 }}
               >
-                {this.props.cart.products.map((item) => {
-                  return <CartOverlayItem product={item} />;
+                {this.props.cart.products.map((item, index) => {
+                  return <CartOverlayItem product={item} key={index} />;
                 })}
               </ul>
               <div className="overlay__footer footer-overlay">

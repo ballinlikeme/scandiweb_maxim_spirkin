@@ -9,14 +9,15 @@ export class CartOverlayAttribute extends StaticAttribute {
       <div className="item-overlay__attribute">
         <div className="item-overlay__label">{this.props.attribute.name}:</div>
         <div className="item-overlay__values">
-          {this.props.attribute.items.map((item) => {
+          {this.props.attribute.items.map((item, index) => {
             return (
               <div
+                key={index}
                 className={cn("item-overlay__value", {
                   _active: this.isEqual(item.value) || false,
                 })}
               >
-                {item.value}
+                {item.value || "none"} 
               </div>
             );
           })}

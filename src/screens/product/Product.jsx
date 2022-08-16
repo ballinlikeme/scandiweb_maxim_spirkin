@@ -130,8 +130,8 @@ class Product extends Component {
           <div className="product__container _container">
             <div className="product__images images">
               <div className="images__small">
-                {this.state.gallery.slice(0, 3).map((image) => {
-                  return <img key={image} src={image} alt="Product" />;
+                {this.state.gallery.slice(0, 3).map((image, index) => {
+                  return <img key={index} src={image} alt="Product" />;
                 })}
               </div>
               <div className="images__big">
@@ -144,11 +144,11 @@ class Product extends Component {
                 <div className="product__subtitle">{this.state.name}</div>
               </div>
               <div className="product__attributes">
-                {this.state.attributes.map((attribute) => {
+                {this.state.attributes.map((attribute, index) => {
                   if (attribute.name === "Color") {
                     return (
                       <ColorAttribute
-                        key={attribute.name}
+                        key={index}
                         onSelectAttributes={this.onSelectAttributes}
                         attribute={attribute}
                         currentAttributes={this.state.currentAttributes}
@@ -157,7 +157,7 @@ class Product extends Component {
                   } else {
                     return (
                       <Attributes
-                        key={attribute.name}
+                        key={index}
                         onSelectAttributes={this.onSelectAttributes}
                         attribute={attribute}
                         currentAttributes={this.state.currentAttributes}
@@ -199,8 +199,8 @@ class Product extends Component {
         <div className="product__container _container">
           <div className="product__images images">
             <div className="images__small">
-              {this.state.gallery.slice(0, 3).map((image) => {
-                return <img src={image} alt="Product" />;
+              {this.state.gallery.slice(0, 3).map((image, index) => {
+                return <img key={index} src={image} alt="Product" />;
               })}
             </div>
             <div className="images__big">

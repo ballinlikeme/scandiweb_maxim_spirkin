@@ -3,7 +3,7 @@
 .product {
   padding: 80px 0;
   position: relative;
-  min-height: 100vh;
+  flex: 1 1 auto;
   &._active {
     &::after {
       content: '';

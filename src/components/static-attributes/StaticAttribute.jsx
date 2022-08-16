@@ -13,11 +13,13 @@ export class StaticAttribute extends Component {
   }
 
   isEqual(value) {
-    const currentAttribute = this.props.selectedAttributes.find((elem) => {
-      return elem.name === this.state.attribute.name;
-    });
-
-    return value === currentAttribute.value ? true : false;
+    if (value) {
+      const currentAttribute = this.props.selectedAttributes.find((elem) => {
+        return elem.name === this.state.attribute.name;
+      });
+  
+      return value === currentAttribute.value ? true : false;
+    }
   }
 
   render() {
@@ -27,10 +29,10 @@ export class StaticAttribute extends Component {
           {this.props.attribute.name}:
         </div>
         <div className="common__selection">
-          {this.props.attribute.items.map((item) => {
+          {this.props.attribute.items.map((item, index) => {
             return (
               <div
-                key={item.value}
+                key={index}
                 className={cn("common__size", {
                   _active: this.isEqual(item.value),
                 })}

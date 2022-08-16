@@ -52,8 +52,8 @@ export class Cart extends React.PureComponent {
         <div className="cart__container _container">
           <h2 className="cart__title">cart</h2>
           <ul className="cart__list">
-            {this.props.cart.products.map((product) => {
-              return <CartItem product={product} />;
+            {this.props.cart.products.map((product, index) => {
+              return <CartItem product={product} key={index} />;
             })}
           </ul>
           <div className="cart__footer">

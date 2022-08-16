@@ -19,10 +19,10 @@ export class StaticColorAttribute extends StaticAttribute {
       <div className="product__item">
         <div className="product__label common__label">color:</div>
         <div className="common__selection">
-          {this.state.attribute.items.map((item) => {
+          {this.state.attribute.items.map((item, index) => {
             return (
               <div
-                key={item.value}
+                key={index}
                 className={cn("common__color", {
                   _active: this.isEqual(item.displayValue),
                 })}

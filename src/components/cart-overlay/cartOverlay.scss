@@ -30,7 +30,6 @@
     overflow: auto;
     &::-webkit-scrollbar {
       width: 5px;
-      
       background-color: #888;
       border-radius: 10px;
     }
@@ -82,8 +81,6 @@
     flex-direction: column;
     gap: 8px;
   }
-
-  &__attribute {}
   
   &__label {
     margin-bottom: 8px;
@@ -168,8 +165,6 @@
     }
   }
 
-  &__amount {}
-
   &__image {
     display: flex;
     align-items: center;
@@ -220,193 +215,3 @@
     color: #fff;
   }
 }
-
-// @import "../../scss/functions";
-
-// .overlay {
-//   position: absolute;
-//   right: 0;
-//   top: 260%;
-//   z-index: 1000;
-
-//   background: #FFF;
-
-//   display: none;
-
-//   &._active {
-//     display: block;
-//   }
-
-//   &__container {
-//     display: flex;
-//     flex-direction: column;
-
-//     gap: 2em;
-
-
-//     font-size: 16px;
-//     padding: 2em 1em;
-//     width: 325px;
-//   }
-//   &__title {
-//     font-size: 1em;
-//     span {
-//       font-weight: 700;
-//     }
-//   }
-//   &__list {
-//     display: flex;
-//     flex-direction: column; 
-
-//     margin-top: 2em;
-//   }
-//   &__item {
-//     display: flex;
-//     gap: 8px;
-
-//     width: 100%;
-//     &:not(:last-child) {
-//       margin-bottom: 40px;
-//     }
-//     height: 100%;
-//   }
-
-//   &__total {
-//     width: 100%;
-
-//     display: flex;
-//     justify-content: space-between;
-//   }
-//   &__label {
-//     font-family: "Roboto";
-//     font-size: 1em;
-//     font-weight: 500;
-//   }
-//   &__price {
-//     font-size: 1em;
-//     font-weight: 700;
-//   }
-//   &__controls {
-//     display: flex;
-//     min-width: 100%;
-//     gap: 12px;
-//     a {
-//       display: block;
-//       width: 100%;
-//     }
-//   }
-//   &__btn {
-//     width: 100%;
-//     &__white {
-//       width: 100%;
-//       background: transparent;
-//       color: #1d1f22;
-//       border: 1px solid #1d1f22;
-//       &:hover {
-//         color: #1d1f22;
-//         background: rgb(234, 233, 233);
-//       }
-//     }
-//   }
-// }
-
-// .item {
-//   &__row {
-//     display: flex;
-//     gap: 20px;
-//     justify-content: space-between;
-//     width: 100%;
-//   }
-//   &__info {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 0.5em;
-//   }
-//   &__textblock {
-//     display: flex;
-//     flex-direction: column;
-//     gap: 5px;
-
-//     font-weight: 300;
-//   }
-  
-//   &__label {
-//     font-family: "Raleway";
-//     font-size: 14px;
-//     font-weight: 400;
-//     text-transform: none;
-//   }
-//   &__price {
-//     font-size: 1em;
-//     font-weight: 500;
-//   }
- 
-//   &__size {
-//     font-size: 14px;
-//     width: 24px;
-//     height: 24px;
-//     line-height: 160%;
-//     padding: 0 5px;
-//   }
-//   &__color {
-//     div {
-//       width: 1em;
-//       height: 1em;
-//     }
-//   }
-
-//   &__controls {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     align-items: center;
-//   }
-//   &__button {
-//     font-size: 16px;
-
-//     display: block;
-
-//     position: relative;
-
-//     width: 1.5em;
-//     height: 1.5em;
-
-//     background: transparent;
-
-//     border: 1px solid #1d1f22;
-
-//     &::before {
-//       content: "";
-//       position: absolute;
-//       display: block;
-//       width: 0.5em;
-//       height: 1px;
-//       background: #1d1f22;
-//       top: 50%;
-//       left: 33.333%;
-//     }
-//     &__plus {
-//       &::after {
-//         content: "";
-//         position: absolute;
-//         display: block;
-//         width: 0.5em;
-//         height: 1px;
-//         left: 33.333%;
-//         top: 50%;
-//         transform: rotate(90deg);
-//         background: #1d1f22;
-//       }
-//     }
-//   }
-
-//   &__image {
-//     min-height: 100%;
-//     width: 100%;
-//     box-sizing: content-box;
-//     img {
-//       width: 100%;
-//       min-height: 100%;
-//     }
-//   }
-// }

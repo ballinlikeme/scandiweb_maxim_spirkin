@@ -27,12 +27,13 @@ class CartOverlayItem extends CartItem {
               )}
             </div>
             <div className="item-overlay__attributes">
-              {this.props.product.attributes.map((item) => {
+              {this.props.product.attributes.map((item, index) => {
                 if (item.name === "Color") {
                   return (
                     <CartOverlayColorAttribute
                       selectedAttributes={this.props.product.selectedAttributes}
                       attribute={item}
+                      key={index}
                     />
                   );
                 } else {
@@ -40,6 +41,7 @@ class CartOverlayItem extends CartItem {
                     <CartOverlayAttribute
                       selectedAttributes={this.props.product.selectedAttributes}
                       attribute={item}
+                      key={index}
                     />
                   );
                 }
