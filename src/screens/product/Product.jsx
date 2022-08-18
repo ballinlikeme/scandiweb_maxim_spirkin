@@ -6,7 +6,7 @@ import ColorAttribute from "../../components/attributes/ColorAttribute";
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 
-import { getProductDetails } from "../../query/product";
+import { getProductDetails } from "../../graphql/product";
 import { sortByField } from "../../js/sortByField";
 
 import getPrice from "../../js/getPrice";
@@ -130,7 +130,7 @@ class Product extends Component {
           <div className="product__container _container">
             <div className="product__images images">
               <div className="images__small">
-                {this.state.gallery.slice(0, 3).map((image, index) => {
+                {this.state.gallery.slice(1, 4).map((image, index) => {
                   return <img key={index} src={image} alt="Product" />;
                 })}
               </div>

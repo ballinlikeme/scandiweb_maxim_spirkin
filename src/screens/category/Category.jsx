@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import ProductTile from "../../components/product-tile/ProductTile";
 
-import { getProductsInCategory } from "../../query/products";
+import { getProductsInCategory } from "../../graphql/products";
 import cn from "classnames";
 
 import "./category.scss";
@@ -23,6 +23,7 @@ class Category extends Component {
     this.setState({
       products: result,
     });
+    console.log(result);
   };
 
   async componentDidMount() {
@@ -30,7 +31,7 @@ class Category extends Component {
   }
 
   async componentDidUpdate(prevProps) {
-    if (prevProps !== this.props) {
+    if (prevProps.category !== this.props.category) {
       this.getProducts();
     }
   }
@@ -47,8 +48,8 @@ class Category extends Component {
             {this.props.category.currentCategory.toUpperCase()}
           </h2>
           <ul className="category-screen__list">
-            {this.state.products.map((product, index) => {
-              return <ProductTile key={index} product={product} />;
+            {this.state.products.map((product) => {
+              return <ProductTile key={product.id} product={product} />;
             })}
           </ul>
         </div>

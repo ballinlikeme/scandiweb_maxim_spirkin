@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 import { connect } from "react-redux";
 
-import { getCurrencies } from "../../query/currency";
+import { getCurrencies } from "../../graphql/currency";
 
 import cartSign from "../../assets/cart.svg";
 import CurrencyButton from "../buttons/currency-button/CurrencyButton";

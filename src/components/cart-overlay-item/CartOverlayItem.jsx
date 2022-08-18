@@ -62,12 +62,9 @@ class CartOverlayItem extends CartItem {
             ></div>
           </div>
         </div>
-        <div
-          className="item-overlay__image"
-          style={{
-            backgroundImage: `url(${this.props.product.gallery[0]})`,
-          }}
-        ></div>
+        <div className="item-overlay__image">
+          <img src={this.props.product.gallery[0]} alt="" />
+        </div>
       </li>
     );
   }

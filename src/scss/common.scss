@@ -46,12 +46,10 @@
       width: 32px;
       height: 32px;
       background-color: #1d1f22;
+      margin: 2px;
     }
 
     &._active {
-      div {
-        margin: 2px;
-      }
       border: 1px solid #5ece7b;
     }
   }

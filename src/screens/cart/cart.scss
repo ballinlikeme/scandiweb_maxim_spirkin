@@ -225,13 +225,7 @@
   &__wrapper {
     height: 100%;
   }
-  &__item {
-
-    img {
-      max-width: 200px;
-      
-    }
-    
+  &__item {    
 
     height: 100%;
     display: flex;
@@ -239,6 +233,17 @@
     justify-content: center;
 
     position: relative;
+  }
+
+  &__images {
+    max-width: 200px;
+
+    display: flex;
+    overflow: hidden;
+    img {
+      max-width: 200px;
+      transition: transform .3s ease;
+    }
   }
 
   &__controls {

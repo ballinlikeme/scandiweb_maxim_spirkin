@@ -30,6 +30,7 @@
     overflow: auto;
     &::-webkit-scrollbar {
       width: 5px;
+      
       background-color: #888;
       border-radius: 10px;
     }
@@ -81,6 +82,8 @@
     flex-direction: column;
     gap: 8px;
   }
+
+  
   
   &__label {
     margin-bottom: 8px;
@@ -165,15 +168,13 @@
     }
   }
 
+  &__amount {}
+
   &__image {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
-    background: url('../../assets/products/product.jpg');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
     img {
       max-width: 100%;
     }
@@ -215,3 +216,4 @@
     color: #fff;
   }
 }
+

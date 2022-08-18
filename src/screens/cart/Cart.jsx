@@ -38,10 +38,6 @@ export class Cart extends React.PureComponent {
     return amount;
   };
 
-  componentDidMount() {
-    console.log("cart props", this.props);
-  }
-
   render() {
     return (
       <div

@@ -2,6 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { StaticAttribute } from "../static-attributes/StaticAttribute";
 import { StaticColorAttribute } from "../static-attributes/StaticColorAttribute";
+import { Slider } from "../slider/Slider";
 import getPrice from "../../js/getPrice";
 
 export class CartItem extends React.PureComponent {
@@ -82,21 +83,7 @@ export class CartItem extends React.PureComponent {
             </div>
           </div>
         </div>
-        <div className="item-cart__slider slider">
-          <div className="slider__wrapper">
-            <div className="slider__item">
-              <img src={this.props.product.gallery[0]} alt="Product" />
-              <div className="slider__controls">
-                <button className="slider__button button">
-                  <div className="button__arrow button__arrow_prev"></div>
-                </button>
-                <button className="slider__button button">
-                  <div className="button__arrow button__arrow_next"></div>
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <Slider images={this.props.product.gallery} />
       </li>
     );
   }

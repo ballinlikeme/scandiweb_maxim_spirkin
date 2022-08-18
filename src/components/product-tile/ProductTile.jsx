@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 import getPrice from "../../js/getPrice";
 
 import { Link } from "react-router-dom";
-import { getProductAttributes } from "../../query/productAttributes";
+import { getProductAttributes } from "../../graphql/productAttributes";
 
 class ProductTile extends Component {
   constructor(props) {

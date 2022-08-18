@@ -105,6 +105,7 @@ class CartOverlay extends Cart {
                     style={{
                       width: "100%",
                     }}
+                    onClick={this.closeCartOverlayByLink}
                   >
                     <button className="footer-overlay__button">view bag</button>
                   </Link>
@@ -150,9 +151,13 @@ class CartOverlay extends Cart {
                   style={{
                     width: "100%",
                   }}
-                  onClick={this.closeCartOverlayByLink}
                 >
-                  <button className="footer-overlay__button">view bag</button>
+                  <button
+                    onClick={this.closeCartOverlayByLink}
+                    className="footer-overlay__button"
+                  >
+                    view bag
+                  </button>
                 </Link>
                 <button className="footer-overlay__button footer-overlay__button-green">
                   check out

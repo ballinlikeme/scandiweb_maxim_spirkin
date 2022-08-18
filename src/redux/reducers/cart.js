@@ -1,10 +1,11 @@
+import { getFromLocalstorage, saveToLocalstorage } from "../../js/localstorage";
+
 const ADD_PRODUCT = "ADD_PRODUCT";
-const REMOVE_PRODUCT = "REMOVE_PRODUCT";
 const INCREASE_AMOUNT = "INCREASE_AMOUNT";
 const DECREASE_AMOUNT = "DECREASE_AMOUNT";
 
 const initialState = {
-  products: [],
+  products: getFromLocalstorage("cart") || [],
 };
 
 export const cartReducer = (state = initialState, { type, payload }) => {
@@ -22,18 +23,11 @@ export const cartReducer = (state = initialState, { type, payload }) => {
 
       if (duplicatedProductIndex > -1) {
         currentProducts[duplicatedProductIndex].amount++;
+        saveToLocalstorage("cart", currentProducts);
         return { ...state, products: currentProducts };
       }
-
+      saveToLocalstorage("cart", [...state.products, payload]);
       return { ...state, products: [...state.products, payload] };
-
-    case REMOVE_PRODUCT:
-      return {
-        ...state,
-        products: state.products.filter(
-          (product) => product.name !== payload.name
-        ),
-      };
 
     case INCREASE_AMOUNT:
       const products = state.products;
@@ -46,6 +40,7 @@ export const cartReducer = (state = initialState, { type, payload }) => {
       });
 
       products[productIndex].amount++;
+      saveToLocalstorage("cart", products);
       return { ...state, products: products };
 
     case DECREASE_AMOUNT:
@@ -57,11 +52,10 @@ export const cartReducer = (state = initialState, { type, payload }) => {
       });
       const allProducts = state.products;
       allProducts[index].amount--;
-      console.log(index, allProducts);
       const productsLeft = allProducts.filter((product) => {
         return product.amount > 0;
       });
-      console.log(productsLeft);
+      saveToLocalstorage("cart", productsLeft);
       return { ...state, products: productsLeft };
 
     default:
