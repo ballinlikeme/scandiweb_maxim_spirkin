@@ -8,32 +8,37 @@ import getPrice from "../../js/getPrice";
 
 import { Link } from "react-router-dom";
 import { getProductAttributes } from "../../graphql/productAttributes";
+import { Navigate } from "react-router-dom";
 
 class ProductTile extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      productInfo: this.props.product,
+      redirect: false,
     };
   }
 
-  addToCart = async () => {
+  addToCart = async (event) => {
+    event.preventDefault();
     const productAttributes = await (
-      await getProductAttributes(this.state.productInfo.id)
+      await getProductAttributes(this.props.product.id)
     ).data.product.attributes;
 
     if (productAttributes.length > 0) {
       alert("Select all the attributes");
+      this.setState({
+        redirect: true,
+      });
       return;
     }
 
     const { dispatch } = this.props;
     const payload = {
-      brand: this.state.productInfo.brand,
-      name: this.state.productInfo.name,
-      prices: this.state.productInfo.prices,
-      gallery: this.state.productInfo.gallery,
+      brand: this.props.product.brand,
+      name: this.props.product.name,
+      prices: this.props.product.prices,
+      gallery: this.props.product.gallery,
       amount: 1,
       attributes: [],
       selectedAttributes: [],
@@ -43,27 +48,29 @@ class ProductTile extends Component {
   };
 
   render() {
+    if (this.state.redirect) {
+      return <Navigate to={`/product/${this.props.product.id}`} />;
+    }
     return (
-      <Link to={`/product/${this.state.productInfo.id}`}>
+      <Link to={`/product/${this.props.product.id}`}>
         <li
           className={cn("category-screen__item item-category-screen", {
-            _active: !this.state.productInfo.inStock,
+            _active: !this.props.product.inStock,
           })}
         >
           <div className="item-category-screen__image">
-            <img src={this.state.productInfo.gallery[0]} alt="" />
+            <img src={this.props.product.gallery[0]} alt="" />
           </div>
           <h3 className="item-category-screen__title">
-            {this.state.productInfo.brand} {this.state.productInfo.name}
+            {this.props.product.brand} {this.props.product.name}
           </h3>
           <div className="item-category-screen__price">
             {this.props.currency.currentCurrencySymbol}
             {getPrice(
-              this.state.productInfo.prices,
+              this.props.product.prices,
               this.props.currency.currentCurrency
             )}
           </div>
-
           <div
             className="item-category-screen__cart-link"
             onClick={this.addToCart}
