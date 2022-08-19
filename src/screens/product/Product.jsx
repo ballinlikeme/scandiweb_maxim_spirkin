@@ -14,6 +14,7 @@ import cn from "classnames";
 
 import "./product.scss";
 import "../../scss/common.scss";
+import { ProductImages } from "../../components/product-images/ProductImages";
 
 function withParams(Component) {
   return (props) => <Component {...props} params={useParams()} />;
@@ -128,7 +129,8 @@ class Product extends Component {
           })}
         >
           <div className="product__container _container">
-            <div className="product__images images">
+            <ProductImages images={this.state.gallery} />
+            {/* <div className="product__images images">
               <div className="images__small">
                 {this.state.gallery.slice(1, 4).map((image, index) => {
                   return <img key={index} src={image} alt="Product" />;
@@ -137,7 +139,7 @@ class Product extends Component {
               <div className="images__big">
                 <img src={this.state.gallery[0]} alt="Product" />
               </div>
-            </div>
+            </div> */}
             <div className="product__information">
               <div className="product__textblock">
                 <div className="product__title">{this.state.brand}</div>
