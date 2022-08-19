@@ -1,9 +1,9 @@
 import React from "react";
-import getPrice from "../../js/getPrice";
+import getPrice from "../../../js/getPrice";
 import { connect } from "react-redux";
-import { CartOverlayAttribute } from "../cart-overlay-attributes/CartOverlayAttribute";
-import { CartOverlayColorAttribute } from "../cart-overlay-attributes/CartOverlayColorAttribute";
-import { CartItem } from "../cart-item/CartItem";
+import { CartOverlayAttribute } from "../../attributes/cart-overlay-attributes/CartOverlayAttribute";
+import { CartOverlaySwatchAttribute } from "../../attributes/cart-overlay-attributes/CartOverlaySwatchAttribute";
+import { CartItem } from "../../items/cart-item/CartItem";
 
 class CartOverlayItem extends CartItem {
   render() {
@@ -28,9 +28,9 @@ class CartOverlayItem extends CartItem {
             </div>
             <div className="item-overlay__attributes">
               {this.props.product.attributes.map((item, index) => {
-                if (item.name === "Color") {
+                if (item.type === "swatch") {
                   return (
-                    <CartOverlayColorAttribute
+                    <CartOverlaySwatchAttribute
                       selectedAttributes={this.props.product.selectedAttributes}
                       attribute={item}
                       key={index}

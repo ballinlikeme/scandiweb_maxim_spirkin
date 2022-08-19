@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import Attributes from "../../components/attributes/Attributes";
-import ColorAttribute from "../../components/attributes/ColorAttribute";
+import Attributes from "../../components/attributes/cart-attributes/Attributes";
+import SwatchAttribute from "../../components/attributes/cart-attributes/SwatchAttribute";
 
 import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -81,6 +81,8 @@ class Product extends Component {
       description: result.data.product.description,
       inStock: result.data.product.inStock,
     });
+
+    console.log("result > ", result);
   }
 
   componentDidUpdate(prevState) {
@@ -130,16 +132,6 @@ class Product extends Component {
         >
           <div className="product__container _container">
             <ProductImages images={this.state.gallery} />
-            {/* <div className="product__images images">
-              <div className="images__small">
-                {this.state.gallery.slice(1, 4).map((image, index) => {
-                  return <img key={index} src={image} alt="Product" />;
-                })}
-              </div>
-              <div className="images__big">
-                <img src={this.state.gallery[0]} alt="Product" />
-              </div>
-            </div> */}
             <div className="product__information">
               <div className="product__textblock">
                 <div className="product__title">{this.state.brand}</div>
@@ -147,9 +139,9 @@ class Product extends Component {
               </div>
               <div className="product__attributes">
                 {this.state.attributes.map((attribute, index) => {
-                  if (attribute.name === "Color") {
+                  if (attribute.type === "swatch") {
                     return (
-                      <ColorAttribute
+                      <SwatchAttribute
                         key={index}
                         onSelectAttributes={this.onSelectAttributes}
                         attribute={attribute}

@@ -1,5 +1,5 @@
 import React from "react";
-import { StaticAttribute } from "../../static-attributes/StaticAttribute";
+import { StaticAttribute } from "../static-attributes/StaticAttribute";
 
 import cn from "classnames";
 
@@ -17,7 +17,7 @@ export class CartOverlayAttribute extends StaticAttribute {
                   _active: this.isEqual(item.value) || false,
                 })}
               >
-                {item.value || "none"}
+                {item.value || "none"} 
               </div>
             );
           })}

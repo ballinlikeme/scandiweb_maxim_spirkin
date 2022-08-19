@@ -1,16 +1,16 @@
 import React from "react";
 
+import { StaticAttribute } from "./StaticAttribute";
+
 import cn from "classnames";
 
-import Attributes from "./Attributes";
-
-class ColorAttribute extends Attributes {
+export class StaticSwatchAttribute extends StaticAttribute {
   constructor(props) {
     super(props);
 
     this.state = {
       attribute: this.props.attribute,
-      selectedValue: null,
+      selectedAttributes: this.props.selectedAttributes,
     };
   }
 
@@ -19,15 +19,12 @@ class ColorAttribute extends Attributes {
       <div className="product__item">
         <div className="product__label common__label">color:</div>
         <div className="common__selection">
-          {this.state.attribute.items.map((item) => {
+          {this.state.attribute.items.map((item, index) => {
             return (
               <div
-                key={item.value}
-                onClick={() => this.handleValueChange(item.displayValue)}
+                key={index}
                 className={cn("common__color", {
-                  _active:
-                    item.displayValue === this.state.selectedValue &&
-                    this.isEqual(item.displayValue),
+                  _active: this.isEqual(item.displayValue),
                 })}
               >
                 <div
@@ -43,5 +40,3 @@ class ColorAttribute extends Attributes {
     );
   }
 }
-
-export default ColorAttribute;

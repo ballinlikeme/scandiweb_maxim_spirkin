@@ -1,5 +1,5 @@
 import React from "react";
-import CartItem from "../../components/cart-item/CartItem";
+import CartItem from "../../components/items/cart-item/CartItem";
 import { connect } from "react-redux";
 import cn from "classnames";
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./cartOverlay.scss";
 import { connect } from "react-redux";
-import CartOverlayItem from "../cart-overlay-item/CartOverlayItem";
+import CartOverlayItem from "../items/cart-overlay-item/CartOverlayItem";
 import { Cart } from "../../screens/cart/Cart";
 import { Link } from "react-router-dom";
 

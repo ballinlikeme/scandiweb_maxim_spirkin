@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import { StaticAttribute } from "../static-attributes/StaticAttribute";
-import { StaticColorAttribute } from "../static-attributes/StaticColorAttribute";
-import { Slider } from "../slider/Slider";
-import getPrice from "../../js/getPrice";
+import { StaticAttribute } from "../../attributes/static-attributes/StaticAttribute";
+import { StaticSwatchAttribute } from "../../attributes/static-attributes/StaticSwatchAttribute";
+import { Slider } from "../../slider/Slider";
+import getPrice from "../../../js/getPrice";
 
 export class CartItem extends React.PureComponent {
   constructor(props) {
@@ -51,9 +51,9 @@ export class CartItem extends React.PureComponent {
               {this.calculatePrice()}
             </div>
             {this.props.product.attributes.map((attribute) => {
-              if (attribute.name === "Color") {
+              if (attribute.type === "swatch") {
                 return (
-                  <StaticColorAttribute
+                  <StaticSwatchAttribute
                     attribute={attribute}
                     key={attribute.name}
                     selectedAttributes={this.props.product.selectedAttributes}

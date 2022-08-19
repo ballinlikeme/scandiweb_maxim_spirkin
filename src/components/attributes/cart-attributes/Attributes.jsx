@@ -17,18 +17,6 @@ class Attributes extends Component {
   }
 
   isEqual = (value) => {
-    // console.log(this.props.currentAttributes, "ie log ca");
-    // const attrbiutes = this.props.currentAttributes.map((attribute) => {
-    //   return attribute.value === value;
-    // });
-
-    // if (attrbiutes.length > 0) {
-    //   console.log(attrbiutes.length, "al");
-    //   return true;
-    // }
-
-    // return false;
-
     const currentAttributes = this.props.currentAttributes.find((elem) => {
       return elem.value === value;
     });
