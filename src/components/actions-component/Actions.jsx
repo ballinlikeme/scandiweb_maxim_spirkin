@@ -58,11 +58,11 @@ class Actions extends Component {
       currencies: currencies,
     });
 
-    document.body.addEventListener("click", this.closeCurrencyMenu);
+    window.addEventListener("click", this.closeCurrencyMenu);
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener("click", this.closeCurrencyMenu);
+    window.removeEventListener("click", this.closeCurrencyMenu);
   }
 
   render() {
@@ -86,7 +86,11 @@ class Actions extends Component {
           <ul className="currency-pop__list">
             {this.state.currencies.map((currency) => {
               return (
-                <CurrencyButton key={currency.label} currencyInfo={currency} />
+                <CurrencyButton
+                  menuRef={this.menuRef}
+                  key={currency.label}
+                  currencyInfo={currency}
+                />
               );
             })}
           </ul>

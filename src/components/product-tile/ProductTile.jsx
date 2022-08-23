@@ -9,6 +9,7 @@ import getPrice from "../../js/getPrice";
 import { Link } from "react-router-dom";
 import { getProductAttributes } from "../../graphql/productAttributes";
 import { Navigate } from "react-router-dom";
+import { sortByField } from "../../js/sortByField";
 
 class ProductTile extends Component {
   constructor(props) {
@@ -25,25 +26,23 @@ class ProductTile extends Component {
       await getProductAttributes(this.props.product.id)
     ).data.product.attributes;
 
-    if (productAttributes.length > 0) {
-      alert("Select all the attributes");
-      this.setState({
-        redirect: true,
-      });
-      return;
-    }
+    const selectedAttributes = productAttributes.map((item) => {
+      return item.type === "swatch"
+        ? { name: item.name, value: item.items[0].displayValue }
+        : { name: item.name, value: item.items[0].value };
+    });
 
-    const { dispatch } = this.props;
     const payload = {
       brand: this.props.product.brand,
       name: this.props.product.name,
       prices: this.props.product.prices,
+      attributes: productAttributes,
+      selectedAttributes: selectedAttributes.sort(sortByField("name")),
       gallery: this.props.product.gallery,
       amount: 1,
-      attributes: [],
-      selectedAttributes: [],
     };
 
+    const { dispatch } = this.props;
     dispatch({ type: "ADD_PRODUCT", payload: payload });
   };
 

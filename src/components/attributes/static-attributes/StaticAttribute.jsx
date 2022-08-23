@@ -17,8 +17,8 @@ export class StaticAttribute extends Component {
       const currentAttribute = this.props.selectedAttributes.find((elem) => {
         return elem.name === this.state.attribute.name;
       });
-  
-      return value === currentAttribute.value ? true : false;
+
+      return value === currentAttribute?.value ? true : false;
     }
   }
 

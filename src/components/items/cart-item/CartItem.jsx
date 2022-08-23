@@ -6,10 +6,6 @@ import { Slider } from "../../slider/Slider";
 import getPrice from "../../../js/getPrice";
 
 export class CartItem extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   calculatePrice = () => {
     const price =
       getPrice(this.props.product.prices, this.props.currency.currentCurrency) *

@@ -26,6 +26,8 @@ class CurrencyButton extends Component {
       type: "CHANGE_CURRENCY",
       payload: payload,
     });
+
+    this.props.menuRef.current.classList.remove("_active");
   };
 
   render() {

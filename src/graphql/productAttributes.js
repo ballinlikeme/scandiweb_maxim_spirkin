@@ -8,7 +8,12 @@ export const getProductAttributes = async (id) => {
                query {
                     product(id: "${id}") {
                          attributes {
-                              name
+                              name,
+                              type,
+                              items {
+                                   displayValue,
+                                   value
+                              }
                          }
                     }
                }

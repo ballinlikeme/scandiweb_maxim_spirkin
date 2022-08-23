@@ -78,8 +78,10 @@
   }
 
   &__big {
+    max-width: 610px;
+    
     img {
-      max-width: 610px;
+      width: 610px;
     }
   }
 }

@@ -92,11 +92,6 @@ class Product extends Component {
   }
 
   onSubmit = () => {
-    if (!this.state.inStock) {
-      alert("The product is out of stock");
-      return;
-    }
-
     if (this.state.currentAttributes.length < this.state.attributes.length) {
       alert("Select all attributes");
       return;
@@ -110,7 +105,6 @@ class Product extends Component {
       selectedAttributes: this.state.currentAttributes.sort(
         sortByField("name")
       ),
-      attributes: this.state.attributes,
       gallery: this.state.gallery,
       amount: 1,
     };
@@ -174,6 +168,7 @@ class Product extends Component {
                 <button
                   onClick={this.onSubmit}
                   className="common__btn common__btn__big"
+                  disabled={this.state.inStock ? false : true}
                 >
                   add to cart
                 </button>

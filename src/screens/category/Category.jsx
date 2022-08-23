@@ -16,6 +16,10 @@ class Category extends Component {
     };
   }
 
+  capitalizeFirstLetter = (string) => {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  };
+
   getProducts = async () => {
     const result = await getProductsInCategory(
       this.props.category.currentCategory
@@ -23,7 +27,6 @@ class Category extends Component {
     this.setState({
       products: result,
     });
-    console.log(result);
   };
 
   async componentDidMount() {
@@ -45,7 +48,7 @@ class Category extends Component {
       >
         <div className="category-screen__container _container">
           <h2 className="category-screen__title">
-            {this.props.category.currentCategory.toUpperCase()}
+            {this.capitalizeFirstLetter(this.props.category.currentCategory)}
           </h2>
           <ul className="category-screen__list">
             {this.state.products.map((product) => {

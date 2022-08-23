@@ -62,7 +62,7 @@
   &__btn {
     font-size: 14px;
     padding: 1em 0;
-    width: 100%;
+    width: 292px;
     text-transform: uppercase;
     background-color: #5ece7b;
     font-weight: 600;
@@ -73,6 +73,11 @@
     }
     &:hover {
       background-color: #54b16c;
+    }
+
+    &:disabled {
+      background-color: grey;
+      cursor: default;
     }
   }
 }
