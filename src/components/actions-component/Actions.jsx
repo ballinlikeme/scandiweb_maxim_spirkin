@@ -43,11 +43,7 @@ class Actions extends Component {
   };
 
   closeCurrencyMenu = (event) => {
-    const element = event.path[0];
-    if (
-      !element.classList.contains("currency-pop__item") &&
-      !element.classList.contains("currency")
-    ) {
+    if (this.menuRef && !this.menuRef.current.contains(event.target)) {
       this.menuRef.current.classList.remove("_active");
     }
   };
